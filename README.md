@@ -7,9 +7,9 @@ does not contain staff grading keys or private tests.
 
 ## Run the public self-test
 
-The verified release target is Linux x86_64. From the repository root, create
-the bundled service environment with an explicit CPython 3.14 interpreter,
-then run the launcher:
+Verified release targets are Linux x86_64 and Apple-silicon macOS
+(`darwin-arm64`). From the repository root, create the bundled service
+environment with an explicit CPython 3.14 interpreter, then run the launcher:
 
 ```sh
 ./student-selftest/bootstrap-python.sh /path/to/python3.14
