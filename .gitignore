@@ -35,6 +35,8 @@
 *.i*86
 *.x86_64
 *.hex
+# The published self-test carries a disposable keypair, never a staff key.
+!student-selftest/keys/*.hex
 
 # Debug files
 *.dSYM/
