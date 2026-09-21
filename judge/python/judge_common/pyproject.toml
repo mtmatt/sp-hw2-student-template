@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "judge-common"
+version = "0.1.0"
+description = "Shared FIFO protocol, decryption, and pretty-printing logic for the judge's logger and alarm programs"
+requires-python = ">=3.10"
+dependencies = [
+    "cryptography>=42",
+    "rich>=13",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/judge_common"]

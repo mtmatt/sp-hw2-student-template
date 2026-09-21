@@ -1,0 +1,23 @@
+# Empty and whitespace-only payloads are valid.
+command_timeout_ms = 2000
+
+[limits]
+processes = { soft = 4, hard = 8 }
+open_fds = { soft = 16, hard = 32 }
+memory_kb = { soft = 65536, hard = 131072 }
+cpu_seconds = { soft = 2, hard = 5 }
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = ""
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = " "
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = "   "

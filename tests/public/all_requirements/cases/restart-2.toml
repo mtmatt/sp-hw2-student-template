@@ -1,0 +1,32 @@
+# Consecutive restarts between encrypted sessions.
+command_timeout_ms = 2000
+
+[limits]
+processes = { soft = 4, hard = 8 }
+open_fds = { soft = 16, hard = 32 }
+memory_kb = { soft = 65536, hard = 131072 }
+cpu_seconds = { soft = 2, hard = 5 }
+
+[[commands]]
+op = "reqtok"
+fifo = "first.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "before repeated restart"
+
+[[commands]]
+op = "restart"
+
+[[commands]]
+op = "restart"
+
+[[commands]]
+op = "reqtok"
+fifo = "second.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "ERROR after repeated restart"

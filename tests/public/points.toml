@@ -1,0 +1,36 @@
+name = "Public tests"
+version = "1"
+scope = "public"
+
+[groups.request_token_only]
+score = 30
+
+[groups.request_token_only.subgroups.protocol]
+score = 24
+tests = "request_token_only/protocol.toml"
+
+[groups.request_token_only.subgroups.restart_resources]
+score = 6
+tests = "request_token_only/restart_resources.toml"
+
+[groups.classify_unencrypted_logs]
+score = 30
+
+[groups.classify_unencrypted_logs.subgroups.protocol]
+score = 24
+tests = "classify_unencrypted_logs/protocol.toml"
+
+[groups.classify_unencrypted_logs.subgroups.restart_resources]
+score = 6
+tests = "classify_unencrypted_logs/restart_resources.toml"
+
+[groups.all_requirements]
+score = 40
+
+[groups.all_requirements.subgroups.protocol]
+score = 32
+tests = "all_requirements/protocol.toml"
+
+[groups.all_requirements.subgroups.restart_resources]
+score = 8
+tests = "all_requirements/restart_resources.toml"

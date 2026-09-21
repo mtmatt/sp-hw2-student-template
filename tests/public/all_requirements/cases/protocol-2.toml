@@ -1,0 +1,37 @@
+# Switch encryption modes and destinations within one session.
+command_timeout_ms = 2000
+
+[limits]
+processes = { soft = 4, hard = 8 }
+open_fds = { soft = 16, hard = 32 }
+memory_kb = { soft = 65536, hard = 131072 }
+cpu_seconds = { soft = 2, hard = 5 }
+
+[[commands]]
+op = "reqtok"
+fifo = "token.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = "plain startup"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "encrypted status"
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = "ERROR plain alert"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "prefixERRORsuffix"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "encrypted recovery"
