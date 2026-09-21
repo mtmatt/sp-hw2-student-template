@@ -1,5 +1,5 @@
 ---
-name: 'Issue: Problem Statement'
+name: 'Problem Statement'
 about: Help us refine the clarity of the problem statement
 title: ''
 labels: documentation
