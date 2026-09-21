@@ -1,0 +1,27 @@
+name = "Restart and resources"
+test_prefix = "cases/restart-"
+
+[[tests]]
+index = 0
+runs = 1
+pass_policy = "all"
+
+[[tests]]
+index = 1
+runs = 2
+pass_policy = "all"
+
+[[tests]]
+index = 2
+runs = 3
+pass_policy = "all"
+
+[[tests]]
+index = 3
+runs = 4
+pass_policy = "all"
+
+[[tests]]
+index = 4
+runs = 5
+pass_policy = "all"

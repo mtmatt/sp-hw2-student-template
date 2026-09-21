@@ -1,0 +1,54 @@
+# Repeated nested FIFO reuse and encrypted child cleanup.
+command_timeout_ms = 2000
+
+[limits]
+processes = { soft = 4, hard = 8 }
+open_fds = { soft = 16, hard = 32 }
+memory_kb = { soft = 65536, hard = 131072 }
+cpu_seconds = { soft = 2, hard = 5 }
+
+[[commands]]
+op = "reqtok"
+fifo = "session/token.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "cycle one"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "ERROR cycle one"
+
+[[commands]]
+op = "restart"
+
+[[commands]]
+op = "reqtok"
+fifo = "session/token.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = ""
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "ERROR cycle two"
+
+[[commands]]
+op = "restart"
+
+[[commands]]
+op = "reqtok"
+fifo = "session/token.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "cycle three"
+
+[[commands]]
+op = "restart"

@@ -1,0 +1,44 @@
+# Alternate plaintext and encrypted routing across cleanup.
+command_timeout_ms = 2000
+
+[limits]
+processes = { soft = 4, hard = 8 }
+open_fds = { soft = 16, hard = 32 }
+memory_kb = { soft = 65536, hard = 131072 }
+cpu_seconds = { soft = 2, hard = 5 }
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = "ERROR plain before"
+
+[[commands]]
+op = "reqtok"
+fifo = "before.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "encrypted before"
+
+[[commands]]
+op = "restart"
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = "plain after"
+
+[[commands]]
+op = "reqtok"
+fifo = "after.fifo"
+
+[[commands]]
+op = "classify"
+encrypt = true
+data = "ERROR encrypted after"
+
+[[commands]]
+op = "classify"
+encrypt = false
+data = "plain recovery"
