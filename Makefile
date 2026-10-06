@@ -6,6 +6,8 @@ STUDENT_ID =
 # every source and header that sp is built from.
 SUBMISSION_FILES = sp.c
 
+# Build sp. Change this rule and `clean` as you like, for example to compile
+# more sources or add flags.
 sp: sp.c
 	gcc -o sp sp.c
 
