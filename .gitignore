@@ -54,6 +54,5 @@ dkms.conf
 # debug information files
 *.dwo
 
-# make test's local Python environment
-/.venv/
-/.uv-bin/
+# The student program binary
+/sp

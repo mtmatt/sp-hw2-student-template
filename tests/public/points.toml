@@ -1,36 +1,31 @@
 name = "Public tests"
-version = "1"
+version = "2"
 scope = "public"
 
-[groups.request_token_only]
-score = 30
+[groups.single_node]
+score = 7
 
-[groups.request_token_only.subgroups.protocol]
-score = 24
-tests = "request_token_only/protocol.toml"
+[groups.single_node.subgroups.cases]
+score = 7
+tests = "single_node/cases.toml"
 
-[groups.request_token_only.subgroups.restart_resources]
-score = 6
-tests = "request_token_only/restart_resources.toml"
+[groups.tree_lookups]
+score = 21
 
-[groups.classify_unencrypted_logs]
-score = 30
+[groups.tree_lookups.subgroups.cases]
+score = 21
+tests = "tree_lookups/cases.toml"
 
-[groups.classify_unencrypted_logs.subgroups.protocol]
-score = 24
-tests = "classify_unencrypted_logs/protocol.toml"
+[groups.consultant]
+score = 29
 
-[groups.classify_unencrypted_logs.subgroups.restart_resources]
-score = 6
-tests = "classify_unencrypted_logs/restart_resources.toml"
+[groups.consultant.subgroups.cases]
+score = 29
+tests = "consultant/cases.toml"
 
-[groups.all_requirements]
-score = 40
+[groups.kill_and_resources]
+score = 43
 
-[groups.all_requirements.subgroups.protocol]
-score = 32
-tests = "all_requirements/protocol.toml"
-
-[groups.all_requirements.subgroups.restart_resources]
-score = 8
-tests = "all_requirements/restart_resources.toml"
+[groups.kill_and_resources.subgroups.cases]
+score = 43
+tests = "kill_and_resources/cases.toml"
