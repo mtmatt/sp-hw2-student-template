@@ -1,21 +1,15 @@
 sp: sp.c
 	gcc -o sp sp.c
 
-UV_DIR := $(CURDIR)/.uv-bin
-UV := $(UV_DIR)/uv
-VENV := $(CURDIR)/.venv
-PYTHON := $(VENV)/bin/python
+.PHONY: clean
+clean:
+	rm -f sp
 
-$(UV):
-	mkdir -p $(UV_DIR)
-	curl -LsSf https://astral.sh/uv/install.sh | env UV_UNMANAGED_INSTALL=$(UV_DIR) sh
-
-$(PYTHON): $(UV)
-	$(UV) venv --clear --python 3.14 $(VENV)
-	$(UV) pip install --python $(PYTHON) judge/python/judge_common
-
+# Copy the student files (everything except judge/, tests/ and .git) into a
+# temp submission dir so the judge sees only the submission. The globs
+# `.[!.]* ..?* *` match all dotfiles and regular names except `.` and `..`.
 .PHONY: test
-test: sp $(PYTHON)
+test: sp
 	@platform=$$(judge/bin/detect-platform.sh) || exit $$?; \
 	bindir="judge/bin/$$platform"; \
 	if [ ! -x "$$bindir/judge" ]; then \
@@ -23,11 +17,11 @@ test: sp $(PYTHON)
 		exit 1; \
 	fi; \
 	work=$$(mktemp -d) || exit 1; \
-	mkdir -p "$$work/submission" "$$work/scratch" "$$work/state"; \
+	mkdir -p "$$work/submission" "$$work/scratch"; \
 	for entry in .[!.]* ..?* *; do \
 		[ -e "$$entry" ] || continue; \
 		case "$$entry" in \
-			judge | tests | .venv | .uv-bin | .git) continue ;; \
+			judge | tests | .git) continue ;; \
 		esac; \
 		cp -R "$$entry" "$$work/submission/"; \
 	done; \
@@ -36,13 +30,7 @@ test: sp $(PYTHON)
 		--submission "$$work/submission" \
 		--scratch-root "$$work/scratch" \
 		--student-program sp \
-		--access-token-generator "$$bindir/access-token-generator" \
-		--atg-secret-key "$$work/state/atg-secret-key.hex" \
-		--python $(PYTHON) \
-		--logger-script judge/python/logger.py \
-		--alarm-script judge/python/alarm.py \
-		--server-keys-dir judge/keys \
-		--encryptor "$$bindir/encryptor" \
+		--consultant "$$bindir/consultant" \
 		--format human --ui auto; \
 	status=$$?; \
 	rm -rf "$$work"; \

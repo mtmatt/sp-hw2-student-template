@@ -26,7 +26,6 @@ If applicable, add screenshots to help explain your problem.
 **Environment**
  - OS: [e.g. workstation, Ubuntu, MacOS]
  - Compiler: [e.g. gcc, clang]
- - Python: [e.g. Cpython 3.14]
 
 **Additional context**
 Add any other context about the problem here.

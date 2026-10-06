@@ -1,1 +1,0 @@
-#define SP_HW2_SID xxxxxxxxx
