@@ -56,3 +56,9 @@ dkms.conf
 
 # The student program binary
 /sp
+
+# make submission's output
+*.zip
+
+# macOS Finder metadata
+.DS_Store
