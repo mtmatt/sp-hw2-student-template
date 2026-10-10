@@ -4,11 +4,11 @@ STUDENT_ID =
 
 # The files you submit besides this Makefile, which is always included. List
 # every source and header that sp is built from.
-SUBMISSION_FILES = sp.c
+SUBMISSION_FILES = sp.c sp.h
 
 # Build sp. Change this rule and `clean` as you like, for example to compile
 # more sources or add flags.
-sp: sp.c
+sp: sp.c sp.h
 	gcc -o sp sp.c
 
 .PHONY: clean
